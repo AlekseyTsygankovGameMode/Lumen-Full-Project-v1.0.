@@ -9,9 +9,9 @@ import { readFile } from "fs/promises";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = Number(process.env.PORT || 3001);
-const HOST = process.env.HOST || "localhost";
 const isProd = process.env.NODE_ENV === "production";
+const PORT = Number(process.env.PORT || (isProd ? 5000 : 3001));
+const HOST = isProd ? "0.0.0.0" : (process.env.HOST || "localhost");
 const ext = isProd ? "js" : "ts";
 
 const app = express();
