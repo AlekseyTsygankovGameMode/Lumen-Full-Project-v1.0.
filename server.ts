@@ -9,8 +9,8 @@ import { readFile } from "fs/promises";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = Number(process.env.PORT || 3000);
-const HOST = process.env.HOST || "0.0.0.0";
+const PORT = Number(process.env.PORT || 3001);
+const HOST = process.env.HOST || "localhost";
 const isProd = process.env.NODE_ENV === "production";
 const ext = isProd ? "js" : "ts";
 
@@ -74,7 +74,7 @@ app.get("*", (_req, res) =>
 
 app.listen(PORT, HOST, () => {
   console.log(`⚡ Lumen running at http://${HOST}:${PORT} (prod=${isProd})`);
-  if (!process.env.OPENAI_API_KEY) {
-    console.warn("⚠️  OPENAI_API_KEY is not set — /api/chat will fallback/error.");
+  if (!process.env.OPENROUTER_API_KEY) {
+    console.warn("⚠️  OPENROUTER_API_KEY is not set — /api/chat will fallback/error.");
   }
 });

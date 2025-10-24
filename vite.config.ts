@@ -9,9 +9,10 @@ export default defineConfig({
   root: "client", // тут лежат index.html, main.tsx и всё UI
 
   server: {
-    host: true,       // позволяет открывать по 192.168.x.x
-    port: 5173,       // стандартный порт Vite
+    host: "0.0.0.0",  // bind to all interfaces for Replit
+    port: 5000,       // Replit requires port 5000 for frontend
     strictPort: true, // не переключается на другой порт
+    allowedHosts: true, // allow Replit proxy hosts
   },
 
   build: {
