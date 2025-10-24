@@ -64,12 +64,12 @@ if (!isProd) {
     }
   });
 } else {
-  // ✅ Исправленный путь
-  const staticDir = path.resolve(__dirname, ".");
-app.use(express.static(staticDir));
-app.get("*", (_req, res) =>
-  res.sendFile(path.join(staticDir, "index.html"))
-);
+  // Production: serve built Vite files from dist directory
+  const distDir = path.resolve(__dirname, "dist");
+  app.use(express.static(distDir));
+  app.get("*", (_req, res) =>
+    res.sendFile(path.join(distDir, "index.html"))
+  );
 }
 
 app.listen(PORT, HOST, () => {
