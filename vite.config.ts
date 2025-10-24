@@ -16,9 +16,9 @@ export default defineConfig({
   },
 
   build: {
-    outDir: "../dist",    // билд складывается в dist/
-    emptyOutDir: true,    // очищает dist при новой сборке
-    assetsDir: "assets",  // куда складывать статику (css/js/fonts)
+    outDir: "../dist/client",    // client build goes to dist/client/
+    emptyOutDir: true,    // clears dist/client before build
+    assetsDir: "assets",  // static assets (css/js/fonts)
   },
 
   // 🧠 RESOLVE PATHS (на всякий случай, если используешь абсолютные импорты)

@@ -64,11 +64,12 @@ if (!isProd) {
     }
   });
 } else {
-  // Production: serve built Vite files from dist directory
-  const distDir = path.resolve(__dirname, "dist");
-  app.use(express.static(distDir));
+  // Production: serve built Vite files from dist/client subdirectory
+  // In production, __dirname is /workspace/project/dist
+  const clientDir = path.join(__dirname, "client");
+  app.use(express.static(clientDir));
   app.get("*", (_req, res) =>
-    res.sendFile(path.join(distDir, "index.html"))
+    res.sendFile(path.join(clientDir, "index.html"))
   );
 }
 
