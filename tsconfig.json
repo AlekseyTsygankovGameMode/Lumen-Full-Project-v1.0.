@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    /* ---------- базовые параметры ---------- */
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",       // ✅ убирает требование .js
+    "jsx": "react-jsx",                  // ✅ поддержка React 18+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strict": true,
+    "skipLibCheck": true,
+
+    /* ---------- вывод ---------- */
+    "outDir": "./dist",
+
+    /* ---------- типы среды ---------- */
+    "types": ["vite/client", "node"],    // ✅ для Vite + Node
+
+    /* ---------- пути (корректное разрешение) ---------- */
+    "baseUrl": ".",
+    "paths": {
+      "@client/*": ["client/*"],
+      "@core/*": ["core/*"],
+      "@api/*": ["api/*"],
+      "@db/*": ["db/*"],
+      "@styles/*": ["client/styles/*"],
+      "@utils/*": ["client/utils/*"]
+    }
+  },
+
+  /* ---------- что включать ---------- */
+  "include": [
+    "server.ts",
+    "api/**/*.ts",
+    "core/**/*.ts",
+    "db/**/*.ts",
+    "client/**/*.ts",
+    "client/**/*.tsx"
+  ],
+
+  /* ---------- что исключать ---------- */
+  "exclude": ["node_modules", "dist*", "dist-client"]
+}

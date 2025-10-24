@@ -1,0 +1,66 @@
+/* ■ LumenUI Polished v1 — Style.css */
+html, body {
+margin: 0;
+padding: 0;
+height: 100%;
+background: radial-gradient(circle at 30% 20%, #2b0068, #10002b);
+background-attachment: fixed;
+color: white;
+font-family: 'Inter', sans-serif;
+}
+.lumen-container {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+border-radius: 25px;
+padding: 2rem 3rem;
+background: rgba(255,255,255,0.03);
+box-shadow: 0 0 80px rgba(160,90,255,0.25);
+max-width: 1200px;
+margin: 5vh auto;
+}
+.chat-section, .reflection-panel {
+background: rgba(255,255,255,0.04);
+border-radius: 25px;
+padding: 1.8rem;
+width: 48%;
+}
+.title {
+text-align: left;
+margin-bottom: 0.3rem;
+margin-left: 0.2rem;
+font-size: 1.6rem;
+font-weight: 600;
+}
+.subtitle {
+text-align: left;
+font-size: 0.95rem;
+color: #d5caff;
+margin-bottom: 1.5rem;
+max-width: 80%;
+}
+.bubble {
+padding: 1rem 1.4rem;
+border-radius: 18px 18px 18px 6px;
+background: rgba(255,255,255,0.06);
+box-shadow: inset 0 0 10px rgba(255,255,255,0.05), 0 0 12px rgba(180,120,255,0.25);
+backdrop-filter: blur(6px);
+border: 1px solid rgba(255,255,255,0.1);
+transition: all 0.3s ease;
+margin-bottom: 0.8rem;
+}
+
+.bubble.lumen-glow {
+border-radius: 18px 18px 6px 18px;
+box-shadow: 0 0 20px rgba(170, 90, 255, 0.6);
+}
+
+.lumen-container.responding {
+animation: pulseGlow 2s ease-in-out;
+}
+
+@keyframes pulseGlow {
+0% { box-shadow: 0 0 40px rgba(180,0,255,0.3); }
+50% { box-shadow: 0 0 80px rgba(255,100,255,0.5); }
+100% { box-shadow: 0 0 40px rgba(180,0,255,0.3); }
+}

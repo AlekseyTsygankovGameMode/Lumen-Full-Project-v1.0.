@@ -1,0 +1,330 @@
+/* 🌌 LUMEN ULTRA-HD BACKGROUND */
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  color: #fff;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 60%, #0e0018 0%, #18002c 25%, #24003e 55%, #30004f 80%, #3d0063 100%);
+  background-size: 300% 300%;
+  animation: bgFlowHD 40s ease-in-out infinite;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* 💨 Перелив цвета — плавный, но контрастный */
+@keyframes bgFlowHD {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1.05);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(35deg) brightness(1.2);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1.05);
+  }
+}
+
+/* ✨ Аура — дыхание света */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--parallax-x, 50%) var(--parallax-y, 50%),
+    rgba(147, 51, 234, 0.35),
+    rgba(219, 39, 119, 0.15),
+    transparent 80%
+  );
+  animation: auraPulse 18s ease-in-out infinite alternate;
+  z-index: -2;
+  filter: blur(160px) saturate(1.3);
+  transition: background-position 0.3s ease-out, filter 1.5s ease;
+}
+
+@keyframes auraPulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+/* 🌫️ Текстура шума */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.08;
+  z-index: -1;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ⚪ Центровка */
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+/* 🪞 LUMEN GLASS WRAPPER */
+.lumen-glass {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  backdrop-filter: blur(25px);
+  box-shadow: inset 0 0 40px rgba(147, 51, 234, 0.05);
+  overflow: hidden;
+}
+
+/* 🌠 LUMEN WRAPPER — adaptive 16:9 framing */
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.lumen-wrapper {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 1250px;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 0 50px rgba(147, 51, 234, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ✨ Подсветка снизу */
+.lumen-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background: radial-gradient(circle at 50% 100%, rgba(200, 80, 255, 0.2), rgba(255, 120, 200, 0.05), transparent 75%);
+  filter: blur(40px);
+  z-index: -1;
+}
+
+/* 🧠 Основной контейнер */
+.lumen-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(30px);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+  transform: rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+}
+
+/* 💬 Чат */
+.chat-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  height: 100%;
+  max-height: 640px;
+  overflow: hidden;
+}
+
+.message-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  max-height: 65vh;
+}
+
+.message-container::-webkit-scrollbar {
+  width: 6px;
+}
+.message-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+.message-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* 🪶 VisionOS soft scroll fade */
+.chat-panel::before,
+.chat-panel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.5s ease;
+}
+.chat-panel::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+}
+.chat-panel::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+/* 💭 Сообщения */
+.lumen-message,
+.user-message {
+  max-width: 72%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.45;
+  word-wrap: break-word;
+  animation: fadeIn 0.4s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.lumen-message {
+  align-self: flex-start;
+  background: linear-gradient(145deg, rgba(160, 100, 255, 0.25), rgba(220, 90, 255, 0.15));
+  border: 1px solid rgba(180, 120, 255, 0.25);
+  box-shadow: 0 0 10px rgba(180, 100, 255, 0.15);
+}
+.user-message {
+  align-self: flex-end;
+  background: linear-gradient(145deg, rgba(255, 120, 200, 0.25), rgba(255, 100, 180, 0.18));
+  border: 1px solid rgba(255, 140, 210, 0.25);
+  box-shadow: 0 0 10px rgba(255, 130, 210, 0.15);
+}
+.lumen-message:hover,
+.user-message:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 18px rgba(200, 120, 255, 0.25);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🧩 Правая панель */
+.reasoning-panel {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+}
+
+/* ✉️ Поле ввода */
+.input-container {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.message-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 14px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 15px;
+  transition: 0.4s ease;
+}
+.message-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 25px rgba(147, 51, 234, 0.3);
+}
+.send-button {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.85), rgba(219, 39, 119, 0.85));
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(147, 51, 234, 0.4);
+  transition: 0.3s ease;
+}
+.send-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(147, 51, 234, 0.6);
+}
+/* 💬 MESSAGE BUBBLES (fixed visual layer) */
+.message-bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  word-break: break-word;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.4s ease;
+}
+.message-bubble.lumen {
+  align-self: flex-start;
+  background: linear-gradient(135deg, rgba(170, 100, 255, 0.25), rgba(220, 90, 255, 0.15));
+  border: 1px solid rgba(170, 100, 255, 0.3);
+  box-shadow: 0 0 15px rgba(180, 100, 255, 0.15);
+}
+.message-bubble.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, rgba(255, 120, 200, 0.25), rgba(255, 100, 180, 0.18));
+  border: 1px solid rgba(255, 140, 210, 0.25);
+  box-shadow: 0 0 15px rgba(255, 130, 210, 0.15);
+}
+.message-bubble:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(200, 120, 255, 0.3);
+}
