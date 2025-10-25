@@ -1,6 +1,8 @@
 // client/components/LumenUI.tsx
 import React, { useEffect, useRef, useState } from "react";
-import "../styles/LumenUI.css"; // важно: подтягивает твои стили
+import "../styles/LumenUI.css";
+import { lumenThinkCycle } from "../../core/engine/lumenThinkCycle";
+import { getESI } from "../../core/engine/stateManager";
 
 export default function LumenUI() {
   const [messages, setMessages] = useState<
@@ -14,31 +16,59 @@ export default function LumenUI() {
     { sender: "user", text: "Ugh, you're so frustrating!" },
     {
       sender: "lumen",
-      text:
-        "I hear you. Let me try rephrasing that: Your choices give you strength.",
+      text: "I hear you. Let me try rephrasing that: Your choices give you strength.",
     },
   ]);
+
   const [input, setInput] = useState("");
   const chatRef = useRef<HTMLDivElement>(null);
 
+  // 💬 Новый reasoning-цикл (Phase 2.5 — Stable)
   const sendMessage = () => {
     if (!input.trim()) return;
-    setMessages((prev) => [...prev, { sender: "user", text: input }]);
+
+    const userInput = input;
+    setMessages((prev) => [...prev, { sender: "user", text: userInput }]);
     setInput("");
+
     setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "lumen", text: "Lumen is reflecting on your message..." },
-      ]);
-    }, 800);
+      try {
+        const { reply, lumenThought } = lumenThinkCycle(userInput);
+
+        if (reply) {
+          setMessages((prev) => [
+            ...prev,
+            { sender: "lumen", text: reply },
+            { sender: "lumen", text: `(${lumenThought || "..."})` },
+          ]);
+        } else {
+          setMessages((prev) => [
+            ...prev,
+            {
+              sender: "lumen",
+              text: "I’m still processing that thought...",
+            },
+          ]);
+        }
+
+        console.log("🧩 Reasoning Sync →", lumenThought);
+      } catch (err) {
+        console.error("💥 Lumen reasoning failed:", err);
+        setMessages((prev) => [
+          ...prev,
+          { sender: "lumen", text: "Hmm… something disrupted my reflection." },
+        ]);
+      }
+    }, 700);
   };
 
-  // автоскролл вниз
+  // 📜 Автоскролл вниз
   useEffect(() => {
-    if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    if (chatRef.current)
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
   }, [messages]);
 
-  // parallax для подсветки
+  // 🎯 Parallax-реакция курсора
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 40;
@@ -62,7 +92,7 @@ export default function LumenUI() {
     <div className="main-container">
       <div className="lumen-wrapper">
         <div className="lumen-container">
-          {/* LEFT: chat */}
+          {/* 💬 Левая часть — чат */}
           <div className="chat-panel">
             <div>
               <h1 className="title">Lumen</h1>
@@ -73,7 +103,9 @@ export default function LumenUI() {
               {messages.map((m, i) => (
                 <div
                   key={i}
-                  className={`message-bubble ${m.sender === "user" ? "user" : "lumen"}`}
+                  className={`message-bubble ${
+                    m.sender === "user" ? "user" : "lumen"
+                  }`}
                 >
                   <p>{m.text}</p>
                 </div>
@@ -97,7 +129,7 @@ export default function LumenUI() {
             </div>
           </div>
 
-          {/* RIGHT: reasoning */}
+          {/* 🧠 Правая часть — reasoning */}
           <div className="reasoning-panel">
             <div>
               <h3 className="reasoning-title">Why Lumen responded this way…</h3>
@@ -118,7 +150,7 @@ export default function LumenUI() {
             </div>
 
             <div className="esi-container">
-              <div className="esi-badge">ESI 73</div>
+              <div className="esi-badge">ESI {getESI()}</div>
               <p className="esi-description">
                 Lumen adapts in real-time to what you feel.
               </p>
