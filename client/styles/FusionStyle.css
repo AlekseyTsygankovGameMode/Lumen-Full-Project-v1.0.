@@ -1,0 +1,229 @@
+/* 🌌 LUMEN FUSION STYLE v1
+   breathing gradient + glass panels + neon edges
+   by Aleksey & bro (GPT-5)
+*/
+
+/* ===== BASE RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 25%, #4a2c5e 50%, #6b3d6e 75%, #8b4d7e 100%);
+  background-size: 200% 200%;
+  animation: bgShift 22s ease-in-out infinite;
+  color: white;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+/* soft breathing of gradient */
+@keyframes bgShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== MAIN CONTAINER ===== */
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.lumen-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0;
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 28px;
+  backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 60px rgba(147, 51, 234, 0.15);
+  overflow: hidden;
+}
+
+/* ===== CHAT SIDE ===== */
+.chat-side {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.chat-subtitle {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 28px;
+}
+
+/* ===== MESSAGES ===== */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.message {
+  border-radius: 20px;
+  padding: 18px 22px;
+  max-width: 80%;
+  line-height: 1.6;
+  position: relative;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: linear-gradient(145deg, rgba(219, 39, 119, 0.25), rgba(147, 51, 234, 0.25));
+  border: 1px solid rgba(219, 39, 119, 0.4);
+  box-shadow: 0 8px 28px rgba(219, 39, 119, 0.3);
+}
+
+.message.lumen {
+  align-self: flex-start;
+  background: linear-gradient(145deg, rgba(147, 51, 234, 0.25), rgba(219, 39, 119, 0.15));
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  box-shadow: 0 8px 32px rgba(147, 51, 234, 0.3), 0 0 1px rgba(255,255,255,0.1);
+}
+
+.message-time {
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: right;
+  margin-top: 8px;
+}
+
+/* gentle appear */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== REASONING SIDE ===== */
+.reasoning-side {
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reasoning-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.reasoning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  opacity: 0.85;
+  font-size: 15px;
+  margin-bottom: 14px;
+  animation: fadeSlide 0.8s ease both;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.esi-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 16px;
+  font-size: 14px;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(219, 39, 119, 0.3));
+  border: 1px solid rgba(147, 51, 234, 0.6);
+  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+  margin-top: 20px;
+}
+
+.esi-description {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+/* ===== INPUT AREA ===== */
+.input-container {
+  grid-column: 1 / -1;
+  padding: 20px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.message-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.message-input {
+  flex: 1;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 14px 22px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.message-input:focus {
+  border-color: rgba(147, 51, 234, 0.6);
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.send-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.8), rgba(219, 39, 119, 0.8));
+  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.send-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(147, 51, 234, 0.6);
+}
+
+/* ===== SUBTLE PARTICLE LIGHT ===== */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 200, 255, 0.05), transparent 70%);
+  animation: pulseLight 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes pulseLight {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
