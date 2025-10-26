@@ -1,0 +1,38 @@
+/* /client/style_addon.css */
+
+/* базовые переменные света и пульса */
+:root {
+  --lumen-glow: hsla(220, 70%, 70%, 0.3);
+  --lumen-pulse: 1.2s;
+}
+
+/* мягкий фон — дыхание света */
+body {
+  background: radial-gradient(circle at 50% 50%, var(--lumen-glow) 0%, transparent 60%);
+  background-attachment: fixed;
+  animation: body-pulse var(--lumen-pulse) ease-in-out infinite alternate;
+  transition: background 1s ease;
+}
+
+/* мягкая анимация дыхания */
+@keyframes body-pulse {
+  from {
+    opacity: 0.92;
+    filter: blur(0.5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(1.5px);
+  }
+}
+
+/* не мешать scroll и UI */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* небольшое улучшение читаемости текста на ярком фоне */
+body, #chat-root {
+  text-shadow: 0 0 4px rgba(0,0,0,0.4);
+}
