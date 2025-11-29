@@ -1,0 +1,22 @@
+/* /client/style_harmonic.css */
+
+:root {
+  --lumen-resonance: 0.8;
+}
+
+body {
+  filter:
+    brightness(calc(0.9 + var(--lumen-resonance) * 0.1))
+    saturate(calc(0.8 + var(--lumen-resonance) * 0.3));
+  transition: filter 0.6s ease, box-shadow 1s ease;
+}
+
+/* лёгкая аура усиливается при высоком резонансе */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  box-shadow: 0 0 calc(40px * var(--lumen-resonance)) hsla(220,70%,70%,0.15);
+  transition: box-shadow 0.8s ease;
+}
